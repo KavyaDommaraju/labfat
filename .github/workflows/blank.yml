@@ -2,21 +2,21 @@ Name: Build Hugo Site
 On:
  Push:
  Branches:
-- '*' # Runs on push to any branch
+- main # Runs on push to any branch
 Jobs:
  Build:
- Runs-on: ubuntu-latest
- Steps:
-- Name: Checkout repository
- Uses: actions/checkout@v3
-- Name: Setup Hugo
- Uses: peaceiris/actions-hugo@v2
- With:
- Hugo-version: ‘latest’
-- Name: Build site
- Run: hugo
-- Name: Upload artifact
- Uses: actions/upload-artifact@v3
- With:
- Name: public
- Path: publi
+  Runs-on: ubuntu-latest
+  Steps:
+   - Name: Checkout repository
+     Uses: actions/checkout@v3
+   - Name: Setup Hugo
+     Uses: peaceiris/actions-hugo@v2
+     With:
+      Hugo-version: ‘latest’
+   - Name: Build site
+   Run: hugo
+   - Name: Upload artifact
+   Uses: actions/upload-artifact@v3
+   With:
+   Name: public
+   Path: publi
