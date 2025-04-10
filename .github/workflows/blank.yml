@@ -1,28 +1,22 @@
-name: Deploy Hugo Website
-
-on:
-  push:
-    branches:
-      - main # or any other branch you use
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.111.3' # Use latest stable version
-
-      - name: Build Website
-        run: hugo
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+Name: Build Hugo Site
+On:
+ Push:
+ Branches:
+- '*' # Runs on push to any branch
+Jobs:
+ Build:
+ Runs-on: ubuntu-latest
+ Steps:
+- Name: Checkout repository
+ Uses: actions/checkout@v3
+- Name: Setup Hugo
+ Uses: peaceiris/actions-hugo@v2
+ With:
+ Hugo-version: ‘latest’
+- Name: Build site
+ Run: hugo
+- Name: Upload artifact
+ Uses: actions/upload-artifact@v3
+ With:
+ Name: public
+ Path: publi
